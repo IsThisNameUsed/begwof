@@ -1,0 +1,14 @@
+﻿  Copy files
+  0 fichier(s) copié(s)
+  0 fichier(s) copié(s)
+cl : Ligne de commande warning D9035: l'option 'Gm' est déconseillée et sera supprimée dans une version ultérieure
+  Player.cpp
+  HelloWorldScene.cpp
+c:\users\zarne\source\coco\begwof 2.0\tests\cpp-empty-test\classes\helloworldscene.cpp(107): warning C4305: '=' : troncation de 'double' à 'float'
+  Génération de code en cours...
+  Compilation en cours...
+  AppDelegate.cpp
+  Génération de code en cours...
+AppDelegate.obj : warning LNK4075: ' /EDITANDCONTINUE' ignorÚ Ó cause de la spÚcification '/SAFESEH'
+     CrÚation de la bibliothÞque C:\Users\zarne\source\coco\Begwof 2.0\build\Debug.win32\cpp-empty-test\cpp-empty-test.lib et de l'objet C:\Users\zarne\source\coco\Begwof 2.0\build\Debug.win32\cpp-empty-test\cpp-empty-test.exp
+  cpp-empty-test.vcxproj -> C:\Users\zarne\source\coco\Begwof 2.0\build\Debug.win32\cpp-empty-test\cpp-empty-test.exe

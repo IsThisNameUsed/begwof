@@ -22,6 +22,8 @@ bool HelloWorld::init()
     }
     
     auto visibleSize = Director::getInstance()->getVisibleSize();
+	auto arenaSize = Point(visibleSize.width, visibleSize.height - 50);
+
     auto origin = Director::getInstance()->getVisibleOrigin();
 
     /////////////////////////////
@@ -72,10 +74,61 @@ bool HelloWorld::init()
     Rect safeArea = Director::getInstance()->getSafeAreaRect();
     drawNode->drawRect(safeArea.origin, safeArea.origin + safeArea.size, Color4F::BLUE);
 	std::cout << "HALLO";
+
+	// Keyboard listener
+	auto keyboardListener = EventListenerKeyboard::create();
+	keyboardListener->onKeyPressed = CC_CALLBACK_2(HelloWorld::onKeyPressed, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
+
+	// Update function call
+	this->scheduleUpdate();
+	time = 0;
+
     return true;
+}
+
+void HelloWorld::update(float dt)
+{
+	dt *= timeScale;
+	time += dt;
+
+	for (auto object : objects)
+	{
+		//object.update(dt);
+	}
 }
 
 void HelloWorld::menuCloseCallback(Ref* sender)
 {
     Director::getInstance()->end();
+}
+
+void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
+{
+	if (keyCode == EventKeyboard::KeyCode::KEY_1)
+	{
+		timeScale = 0.1;
+		CCLOG("time slow");
+	}
+	else if (keyCode == EventKeyboard::KeyCode::KEY_2)
+	{
+		timeScale = 1.0;
+		CCLOG("time normal");
+	}
+	else if (keyCode == EventKeyboard::KeyCode::KEY_3)
+	{
+		timeScale = 2.0;
+		CCLOG("time fast");
+	}
+}
+
+void HelloWorld::onClick(Touch* touch, Event* event)
+{
+	for (auto object : objects)
+	{
+		//if (object->isClicked(touch->getLocation()) && object->isClickable)
+		{
+			//object->click();
+		}
+	}
 }
