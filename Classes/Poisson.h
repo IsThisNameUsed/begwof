@@ -1,12 +1,19 @@
 #pragma once
-#include "Object.h"
+#include "Element.h"
 
-class Poisson: public Object
+class Poisson: public Element
 {
 public:
-	double posX;
-	double posY;
-	Poisson();
+	Poisson(cocos2d::Node* parent);
 	~Poisson();
 
+	virtual void update(float dt);
+
+protected:
+	cocos2d::Point velocity;
+	float lineLength;
+	float lineThickness;
+
+	// PLACEHOLDER
+	float time = 0;
 };
