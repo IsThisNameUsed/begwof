@@ -20,7 +20,7 @@ public:
 	static const double DISTANCE_MAX_SQUARED;
 
 protected:
-	void UpdatePosition();
+	void UpdatePosition(float dt);
 	bool InAlignment(Fish p);
 	double DistanceFromWall(double wallXMin, double wallXMax, double wallYMin, double wallYMax);
 	void NormalizeVelocity();

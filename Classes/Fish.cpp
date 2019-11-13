@@ -2,7 +2,7 @@
 #include "math.h"
 using namespace cocos2d;
 
-double const Fish::STEP = 3;
+double const Fish::STEP = 10;
 const double Fish::DISTANCE_MIN = 5;
 const double Fish::DISTANCE_MIN_SQUARED = 25;
 const double Fish::DISTANCE_MAX = 40;
@@ -35,20 +35,20 @@ void Fish::Update(std::vector<Fish> &fishes, std::list<AreaToAvoid> &obstacles, 
 			}
 		}
 	}
-	UpdatePosition();
+	UpdatePosition(dt);
 	Draw(dt);
 }
 
 void Fish::Draw(float dt)
 {
 	//PLACEHOLDER
-	velocity.x = 5;
+	/*velocity.x = 5;
 	velocity.y = std::sin(time) * 5;
 	time += dt;
 	
 	// TODO LOGIC
 
-	pos += velocity * dt;
+	pos += velocity * dt;*/
 
 	Point from = pos;
 	Point to = from + velocity.getNormalized() * lineLength;
@@ -69,9 +69,11 @@ double Fish::getVelocityY()
 	return velocity.y;
 }
 
-void Fish::UpdatePosition()
+void Fish::UpdatePosition(float dt)
 {
-	pos.x += Fish::STEP * velocity.x;
+	CCLOG((std::to_string((float)pos.x) +" " + std::to_string((float)pos.y)).c_str());
+	pos.x += Fish::STEP * velocity.x * dt;
+	pos.y += Fish::STEP * velocity.y * dt;
 }
 
 bool Fish::InAlignment(Fish p)
@@ -80,10 +82,10 @@ bool Fish::InAlignment(Fish p)
 	return (squaredDistance < DISTANCE_MAX_SQUARED && squaredDistance > DISTANCE_MIN_SQUARED);
 }
 
-double Fish::DistanceFromWall(double wallXMin, double wallXMax, double wallYMin, double wallYMax)
+double Fish::DistanceFromWall(double wallXMin, double wallYMin, double wallXMax, double wallYMax)
 {
 	double min = MIN(pos.x - wallXMin, pos.y - wallYMin);
-	min = MIN(min, wallXMax-pos.x);
+	min = MIN(min, wallXMax - pos.x);
 	min = MIN(min, wallYMax - pos.y);
 	return min;
 }
@@ -99,7 +101,7 @@ bool Fish::AvoidWall(double wallXMin, double wallYMin, double wallXMax, double w
 {
 	if (pos.x < wallXMin) 
 	{
-		pos.x == wallXMin;
+		pos.x = wallXMin;
 	}
 	else if (pos.y < wallYMin)
 	{
@@ -115,21 +117,22 @@ bool Fish::AvoidWall(double wallXMin, double wallYMin, double wallXMax, double w
 	}
 
 	double distance = DistanceFromWall(wallXMin, wallYMin, wallXMax, wallYMax);
+
 	if (distance < DISTANCE_MIN)
 	{
-		if (distance == (pos.x - wallXMin))
+		if ((int)distance == (int)(pos.x - wallXMin))
 		{
 			velocity.x += 0.3;
 		}
-		else if (distance == (pos.y - wallYMin))
+		else if ((int)distance == (int)(pos.y - wallYMin))
 		{
 			velocity.y += 0.3;
 		}
-		else if (distance == (wallXMax - pos.x))
+		else if ((int)distance == (int)(wallXMax - pos.x))
 		{
 			velocity.x -= 0.3;
 		}
-		else if (distance == (wallYMax - pos.y))
+		else if ((int)distance == (int)(wallYMax - pos.y))
 		{
 			velocity.y -= 0.3;
 		}
@@ -199,7 +202,7 @@ bool Fish::AvoidFish(std::vector<Fish> fishes)
 	{
 		double distance = sqrt(distanceSquared);
 		double diffX = (f.pos.x - pos.x) / distance;
-		double diffY = (f.pos.y - pos.y) / distance;
+		double diffY = (f.pos.y - pos.y) / distance; // division par 0 ici TAGUEULE!!!
 		velocity.x = velocity.x - diffX;
 		velocity.y = velocity.y - diffY;
 		NormalizeVelocity();

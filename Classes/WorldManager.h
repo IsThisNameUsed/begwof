@@ -18,6 +18,6 @@ protected:
 	std::vector<Fish> fishes;
 	std::list<AreaToAvoid> obstacles;
 	double width;
-	double length;
+	double height;
 };
 

@@ -51,12 +51,13 @@ bool HelloWorld::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(clickListener, this);
 
 	// PLACEHOLDER boids init
-	elements.push_back(std::make_unique<Fish>(this,20,50,1));
+	/*elements.push_back(std::make_unique<Fish>(this,20,50,1));
 	elements.push_back(std::make_unique<Fish>(this,40,50,1));
 	elements.push_back(std::make_unique<Fish>(this, 60, 50, 1));
 	elements.push_back(std::make_unique<Fish>(this, 80, 50, 1));
-	elements.push_back(std::make_unique<Guru>(this, 90, 50, 1));
-	worldManager = new WorldManager(this, 100, 100, 100);
+	elements.push_back(std::make_unique<Guru>(this, 90, 50, 1));*/
+	//worldManager = new WorldManager(this, 1, (double)arenaSize.x, (double)arenaSize.y);
+	worldManager = new WorldManager(this, 1, 150,150);
 
 	/*int i = 0;
 	auto it = elements.begin();
