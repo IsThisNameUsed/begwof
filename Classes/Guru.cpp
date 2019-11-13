@@ -16,7 +16,7 @@ Guru::~Guru()
 void Guru::Update(std::vector<std::shared_ptr<Fish>>& fishes, std::list<AreaToAvoid>& obstacles, double width, double length, float dt)
 {
 	Fish::Update(fishes, obstacles, width, length, dt);
-	//Influence(fishes);
+	Influence(fishes);
 }
 
 void Guru::Draw(float dt)
@@ -28,6 +28,7 @@ void Guru::Draw(float dt)
 
 void Guru::Influence(std::vector<std::shared_ptr<Fish>>& fishes)
 {
+	int number = 0;
 	auto it = fishes.begin();
 	auto end = fishes.end();
 	while (it != end)
@@ -37,5 +38,6 @@ void Guru::Influence(std::vector<std::shared_ptr<Fish>>& fishes)
 		{
 			fish->color = color;
 		}
+		++it;
 	}
 }
