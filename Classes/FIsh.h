@@ -30,10 +30,11 @@ protected:
 	bool AvoidObstacle(std::list<AreaToAvoid> obstacles);
 	bool AvoidFish(std::vector<Fish> &fishes);
 	void CalculateAverageDirection(std::vector<Fish> fishes);
-	//void Draw(float dt);
+	void Influenced(Guru &guru);
+	bool isInInfluenceRadiusOfHisGuru();
 	cocos2d::Point velocity;
 	float lineLength;
 	float lineThickness;
-
 	Guru* guru;
+	bool isAfollower;
 };

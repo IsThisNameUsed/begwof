@@ -201,7 +201,7 @@ bool Fish::AvoidFish(std::vector<Fish> &fishes)
 	{
 		double distance = sqrt(distanceSquared);
 		double diffX = (f->pos.x - pos.x) / distance;
-		double diffY = (f->pos.y - pos.y) / distance; // division par 0 ici TAGUEULE!!!
+		double diffY = (f->pos.y - pos.y) / distance;
 		velocity.x = velocity.x - diffX;
 		velocity.y = velocity.y - diffY;
 		NormalizeVelocity();
@@ -232,4 +232,21 @@ void Fish::CalculateAverageDirection(std::vector<Fish> fishes)
 		NormalizeVelocity();
 	}
 
+}
+
+void Fish::Influenced(Guru &guru)
+{
+	if (isAfollower)
+	{
+		//bool = Check si dans la zone d'influence de son gourou
+		//si bool == true return;
+		//Sinon guru = guru et color = guru.color
+	}
+}
+
+
+bool Fish::isInInfluenceRadiusOfHisGuru()
+{
+	//double distance = Distance(*guru);
+	return true;
 }
