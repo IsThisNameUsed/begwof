@@ -13,8 +13,8 @@ WorldManager::WorldManager(cocos2d::Node* parent,int _fishNumber, double _width,
 	{
 		double x = ((double)rand() / RAND_MAX)* width;
 		double y = ((double)rand() / RAND_MAX)* height;
-		x = 50;
-		y = 75;
+		//x = 50;
+		//y = 75 + i * 10;
 		double dir = ((double)rand() / RAND_MAX) * 2 * 3.14f;
 		fishes.push_back(Fish(parent,x, y, dir));
 	}

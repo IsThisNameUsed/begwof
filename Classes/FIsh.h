@@ -26,7 +26,7 @@ protected:
 	void NormalizeVelocity();
 	bool AvoidWall(double wallXMin, double wallYMin, double wallXMax, double wallYMax);
 	bool AvoidObstacle(std::list<AreaToAvoid> obstacles);
-	bool AvoidFish(std::vector<Fish> fishes);
+	bool AvoidFish(std::vector<Fish> &fishes);
 	void CalculateAverageDirection(std::vector<Fish> fishes);
 	//void Draw(float dt);
 	cocos2d::Point velocity;

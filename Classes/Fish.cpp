@@ -2,7 +2,7 @@
 #include "math.h"
 using namespace cocos2d;
 
-double const Fish::STEP = 10;
+double const Fish::STEP = 20;
 const double Fish::DISTANCE_MIN = 5;
 const double Fish::DISTANCE_MIN_SQUARED = 25;
 const double Fish::DISTANCE_MAX = 40;
@@ -177,23 +177,23 @@ bool Fish::AvoidObstacle(std::list<AreaToAvoid> obstacles)
 
 
 //CA COMPILE MAIS SUR QUE CA MARCHE WARNING FOYER A ENMERDE HERE
-bool Fish::AvoidFish(std::vector<Fish> fishes)
+bool Fish::AvoidFish(std::vector<Fish> &fishes)
 {
 
 	//recherche poisson le plus proche
-	Fish f=fishes.at(0);
-	if (&(fishes.at(0)) == this)
-		f =fishes.at(0);
-	else {
-		f = fishes.at(1);
-	}
-	double distanceSquared = DistanceSquared(f);
+	Fish* f= &fishes.at(0);
+	if (f == this)
+		f = &fishes.at(1);
+
+	double distanceSquared = DistanceSquared(*f);
 	for (int i = 0; i < fishes.size(); i++)
 	{
+		Fish* testing = &fishes.at(i);
+		bool isMe = testing == this;
 		if (DistanceSquared(fishes.at(i)) < distanceSquared && !(&(fishes.at(i)) == this))
 		{
-			f = fishes.at(i);
-			distanceSquared = DistanceSquared(f);
+			f = &fishes.at(i);
+			distanceSquared = DistanceSquared(*f);
 		}
 	}
 
@@ -201,8 +201,8 @@ bool Fish::AvoidFish(std::vector<Fish> fishes)
 	if (distanceSquared < DISTANCE_MIN_SQUARED)
 	{
 		double distance = sqrt(distanceSquared);
-		double diffX = (f.pos.x - pos.x) / distance;
-		double diffY = (f.pos.y - pos.y) / distance; // division par 0 ici TAGUEULE!!!
+		double diffX = (f->pos.x - pos.x) / distance;
+		double diffY = (f->pos.y - pos.y) / distance; // division par 0 ici TAGUEULE!!!
 		velocity.x = velocity.x - diffX;
 		velocity.y = velocity.y - diffY;
 		NormalizeVelocity();

@@ -50,24 +50,8 @@ bool HelloWorld::init()
 	clickListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onClick, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(clickListener, this);
 
-	// PLACEHOLDER boids init
-	/*elements.push_back(std::make_unique<Fish>(this,20,50,1));
-	elements.push_back(std::make_unique<Fish>(this,40,50,1));
-	elements.push_back(std::make_unique<Fish>(this, 60, 50, 1));
-	elements.push_back(std::make_unique<Fish>(this, 80, 50, 1));
-	elements.push_back(std::make_unique<Guru>(this, 90, 50, 1));*/
-	//worldManager = new WorldManager(this, 1, (double)arenaSize.x, (double)arenaSize.y);
-	worldManager = new WorldManager(this, 1, 150,150);
+	worldManager = new WorldManager(this,150, arenaSize.x, arenaSize.y);
 
-	/*int i = 0;
-	auto it = elements.begin();
-	auto end = elements.end();
-	while (it != end)
-	{
-		(*it)->pos = Point(i++ * 20, 50);
-		(*it)->id = i;
-		++it;
-	}*/
 
 	// Update function call
 	this->scheduleUpdate();
