@@ -13,10 +13,10 @@ Guru::~Guru()
 {
 }
 
-void Guru::Update(std::vector<Fish>& fishes, std::list<AreaToAvoid>& obstacles, double width, double length, float dt)
+void Guru::Update(std::vector<std::shared_ptr<Fish>>& fishes, std::list<AreaToAvoid>& obstacles, double width, double length, float dt)
 {
 	Fish::Update(fishes, obstacles, width, length, dt);
-	Influence(fishes);
+	//Influence(fishes);
 }
 
 void Guru::Draw(float dt)
@@ -26,13 +26,16 @@ void Guru::Draw(float dt)
 	draw->drawCircle(pos, influenceRadius, 360, 24, false, color);
 }
 
-void Guru::Influence(std::vector<Fish>& fishes)
+void Guru::Influence(std::vector<std::shared_ptr<Fish>>& fishes)
 {
-	for (auto fish : fishes)
+	auto it = fishes.begin();
+	auto end = fishes.end();
+	while (it != end)
 	{
-		if (DistanceSquared(fish) < influenceRadius * influenceRadius)
+		Fish* fish = (*it).get();
+		if (DistanceSquared(*fish) < influenceRadius * influenceRadius)
 		{
-			fish.color = color;
+			fish->color = color;
 		}
 	}
 }
