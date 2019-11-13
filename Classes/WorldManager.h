@@ -15,7 +15,7 @@ public:
 	void UpdateFishes(float dt);
 	void UpdateWorld(float dt);
 protected:
-	std::vector<Fish> fishes;
+	std::vector<std::shared_ptr<Fish>> fishes;
 	std::list<AreaToAvoid> obstacles;
 	double width;
 	double height;

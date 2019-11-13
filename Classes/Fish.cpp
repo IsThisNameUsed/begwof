@@ -24,7 +24,7 @@ Fish::~Fish()
 {
 }
 
-void Fish::Update(std::vector<Fish> &fishes, std::list<AreaToAvoid> &obstacles, double width, double length, float dt)
+void Fish::Update(std::vector<std::shared_ptr<Fish>> &fishes, std::list<AreaToAvoid> &obstacles, double width, double length, float dt)
 {
 	if (!AvoidWall(0, 0, width, length))
 	{
@@ -177,21 +177,21 @@ bool Fish::AvoidObstacle(std::list<AreaToAvoid> obstacles)
 
 
 //CA COMPILE MAIS SUR QUE CA MARCHE WARNING FOYER A ENMERDE HERE
-bool Fish::AvoidFish(std::vector<Fish> &fishes)
+bool Fish::AvoidFish(std::vector<std::shared_ptr<Fish>> &fishes)
 {
 	//recherche poisson le plus proche
-	Fish* f= &fishes.at(0);
+	Fish* f= fishes.at(0).get();
 	if (f == this)
-		f = &fishes.at(1);
+		f = fishes.at(1).get();
 
 	double distanceSquared = DistanceSquared(*f);
 	for (int i = 0; i < fishes.size(); i++)
 	{
-		Fish* testing = &fishes.at(i);
+		Fish* testing = fishes.at(i).get();
 		bool isMe = testing == this;
-		if (DistanceSquared(fishes.at(i)) < distanceSquared && !(&(fishes.at(i)) == this))
+		if (DistanceSquared(*fishes.at(i).get()) < distanceSquared && !(fishes.at(i).get() == this))
 		{
-			f = &fishes.at(i);
+			f = fishes.at(i).get();
 			distanceSquared = DistanceSquared(*f);
 		}
 	}
@@ -210,14 +210,14 @@ bool Fish::AvoidFish(std::vector<Fish> &fishes)
 	return false;
 }
 
-void Fish::CalculateAverageDirection(std::vector<Fish> fishes)
+void Fish::CalculateAverageDirection(std::vector<std::shared_ptr<Fish>> fishes)
 {
 	double totalVelocityX = 0;
 	double totalVelocityY = 0;
 	int totalNb = 0;
 	for (int i = 0; i < fishes.size(); i++)
 	{
-		Fish f = fishes.at(i);
+		Fish f = *fishes.at(i).get();
 		if (InAlignment(f))
 		{
 			totalVelocityX += f.velocity.x;

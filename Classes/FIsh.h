@@ -13,7 +13,7 @@ public:
 	double getVelocityX();
 	double getVelocityY();
 	virtual void Draw(float dt);
-	virtual void Update(std::vector<Fish> &fishes, std::list<AreaToAvoid> &obstacles, double width, double length,float dt);
+	virtual void Update(std::vector<std::shared_ptr<Fish>> &fishes, std::list<AreaToAvoid> &obstacles, double width, double length,float dt);
 
 	static const double STEP;
 	static const double DISTANCE_MIN;
@@ -28,8 +28,8 @@ protected:
 	void NormalizeVelocity();
 	bool AvoidWall(double wallXMin, double wallYMin, double wallXMax, double wallYMax);
 	bool AvoidObstacle(std::list<AreaToAvoid> obstacles);
-	bool AvoidFish(std::vector<Fish> &fishes);
-	void CalculateAverageDirection(std::vector<Fish> fishes);
+	bool AvoidFish(std::vector<std::shared_ptr<Fish>> &fishes);
+	void CalculateAverageDirection(std::vector<std::shared_ptr<Fish>> fishes);
 	//void Draw(float dt);
 	cocos2d::Point velocity;
 	float lineLength;
