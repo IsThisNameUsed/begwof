@@ -18,6 +18,14 @@ WorldManager::WorldManager(cocos2d::Node* parent,int _fishNumber, double _width,
 		double dir = ((double)rand() / RAND_MAX) * 2 * 3.14f;
 		fishes.push_back(Fish(parent,x, y, dir));
 	}
+
+	Guru guru = Guru(parent, 50, 50, 0, cocos2d::ccColor4F::RED);
+	std::string type = typeid(guru).name();
+	fishes.push_back(guru);
+	//type = typeid(fishes.at(_fishNumber);
+
+
+	fishes.push_back(Guru(parent, 500, 400, 0, cocos2d::ccColor4F::BLUE));
 }
 
 
@@ -48,7 +56,9 @@ void WorldManager::UpdateFishes(float dt)
 {
 	for (int i = 0; i < fishes.size(); i++)
 	{
-		fishes.at(i).Update(fishes, obstacles, width, height, dt);
+		Fish* fish = &fishes.at(i);
+		std::string type = typeid(fish).name();
+		fish->Update(fishes, obstacles, width, height, dt);
 	}
 }
 void WorldManager::UpdateWorld(float dt)

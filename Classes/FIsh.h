@@ -2,6 +2,8 @@
 #include "Element.h"
 #include "AreaToAvoid.h"
 
+class Guru;
+
 class Fish: public Element
 {
 public:
@@ -11,7 +13,7 @@ public:
 	double getVelocityX();
 	double getVelocityY();
 	virtual void Draw(float dt);
-	void Update(std::vector<Fish> &fishes, std::list<AreaToAvoid> &obstacles, double width, double length,float dt);
+	virtual void Update(std::vector<Fish> &fishes, std::list<AreaToAvoid> &obstacles, double width, double length,float dt);
 
 	static const double STEP;
 	static const double DISTANCE_MIN;
@@ -33,6 +35,5 @@ protected:
 	float lineLength;
 	float lineThickness;
 
-	// PLACEHOLDER
-	float time = 0;
+	Guru* guru;
 };

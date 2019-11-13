@@ -3,8 +3,8 @@
 using namespace cocos2d;
 
 double const Fish::STEP = 20;
-const double Fish::DISTANCE_MIN = 5;
-const double Fish::DISTANCE_MIN_SQUARED = 25;
+const double Fish::DISTANCE_MIN = 10;
+const double Fish::DISTANCE_MIN_SQUARED = 100;
 const double Fish::DISTANCE_MAX = 40;
 const double Fish::DISTANCE_MAX_SQUARED = 1600;
 
@@ -23,6 +23,7 @@ Fish::Fish(): Element()
 Fish::~Fish()
 {
 }
+
 void Fish::Update(std::vector<Fish> &fishes, std::list<AreaToAvoid> &obstacles, double width, double length, float dt)
 {
 	if (!AvoidWall(0, 0, width, length))
@@ -71,7 +72,6 @@ double Fish::getVelocityY()
 
 void Fish::UpdatePosition(float dt)
 {
-	CCLOG((std::to_string((float)pos.x) +" " + std::to_string((float)pos.y)).c_str());
 	pos.x += Fish::STEP * velocity.x * dt;
 	pos.y += Fish::STEP * velocity.y * dt;
 }
@@ -179,7 +179,6 @@ bool Fish::AvoidObstacle(std::list<AreaToAvoid> obstacles)
 //CA COMPILE MAIS SUR QUE CA MARCHE WARNING FOYER A ENMERDE HERE
 bool Fish::AvoidFish(std::vector<Fish> &fishes)
 {
-
 	//recherche poisson le plus proche
 	Fish* f= &fishes.at(0);
 	if (f == this)
