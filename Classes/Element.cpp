@@ -24,7 +24,7 @@ Element::~Element()
 {
 }
 
-void Element::update(float dt)
+void Element::Draw(float dt)
 {
 
 }
@@ -49,7 +49,7 @@ double Element::Distance(Element o)
 	return sqrt((o.pos.x - pos.x)*(o.pos.x - pos.x) + (o.pos.y - pos.y)*(o.pos.y - pos.y));
 }
 
-double Element::DistanceCarre(Element o)
+double Element::DistanceSquared(Element o)
 {
 	return (o.pos.x - pos.x)*(o.pos.x - pos.x) + (o.pos.y - pos.y)*(o.pos.y - pos.y);
 }

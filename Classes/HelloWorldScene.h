@@ -4,8 +4,9 @@
 
 #include "cocos2d.h"
 #include "Element.h"
-#include "Poisson.h"
+#include "Fish.h"
 #include "Guru.h"
+#include "WorldManager.h";
 
 class HelloWorld : public cocos2d::Scene
 {
@@ -26,9 +27,10 @@ public:
 	float timeScale = 1;
 	float time;
 	std::vector<std::unique_ptr<Element>> elements; // TODO change to objects
-
+	std::vector<Fish> fishes;
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+	WorldManager *worldManager;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -1,5 +1,6 @@
 
 #include "HelloWorldScene.h"
+#include "WorldManager.h"
 #include "AppMacros.h"
 #include <iostream>
 #include <stdlib.h>
@@ -50,12 +51,14 @@ bool HelloWorld::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(clickListener, this);
 
 	// PLACEHOLDER boids init
-	elements.push_back(std::make_unique<Poisson>(this));
-	elements.push_back(std::make_unique<Poisson>(this));
-	elements.push_back(std::make_unique<Poisson>(this));
-	elements.push_back(std::make_unique<Poisson>(this));
-	elements.push_back(std::make_unique<Guru>(this));
-	int i = 0;
+	elements.push_back(std::make_unique<Fish>(this,20,50,1));
+	elements.push_back(std::make_unique<Fish>(this,40,50,1));
+	elements.push_back(std::make_unique<Fish>(this, 60, 50, 1));
+	elements.push_back(std::make_unique<Fish>(this, 80, 50, 1));
+	elements.push_back(std::make_unique<Guru>(this, 90, 50, 1));
+	worldManager = new WorldManager(this, 100, 100, 100);
+
+	/*int i = 0;
 	auto it = elements.begin();
 	auto end = elements.end();
 	while (it != end)
@@ -63,7 +66,7 @@ bool HelloWorld::init()
 		(*it)->pos = Point(i++ * 20, 50);
 		(*it)->id = i;
 		++it;
-	}
+	}*/
 
 	// Update function call
 	this->scheduleUpdate();
@@ -77,18 +80,16 @@ void HelloWorld::update(float dt)
 	// Set delta time
 	dt *= timeScale;
 	time += dt;
-
+	worldManager->UpdateWorld(dt);
 	// Update each element
-	auto it = elements.begin();
+	/*auto it = elements.begin();
 	auto end = elements.end();
 	while (it != end)
 	{
-		Element* element = it->get();
-		
-		element->update(dt);
-
+		Element* element = it->get();		
+		element->Draw(dt);
 		++it;
-	}
+	}*/
 }
 
 // Callback when player press any key

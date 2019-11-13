@@ -10,7 +10,7 @@ public:
 	Element(cocos2d::Node* parent);
 	Element(int, int);
 	~Element();
-	virtual void update(float dt);
+	virtual void Draw(float dt);
 
 	// Feedback functions
 	bool isClicked(cocos2d::Point point);
@@ -18,7 +18,7 @@ public:
 
 	// Utilities functions
 	double Distance(Element o);
-	double DistanceCarre(Element o);
+	double DistanceSquared(Element o);
 
 	// Variables
 	int id;

@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Poisson.h"
+#include "Fish.h"
 
-class Guru : public Poisson
+class Guru : public Fish
 {
 public:
-	Guru(cocos2d::Node* parent);
+	Guru(cocos2d::Node * parent, double _X, double _Y, double _dir);
 	~Guru();
 
-	void update(float dt);
+	void Draw(float dt);
 
 	float influenceRadius;
 };

@@ -4,8 +4,8 @@
 
 AreaToAvoid::AreaToAvoid(double _x, double _y, double _radius)
 {
-	posX = _x;
-	posY = _y;
+	pos.x = _x;
+	pos.y = _y;
 	radius = _radius;
 }
 

@@ -1,7 +1,7 @@
 #pragma once
-#include "Object.h"
+#include "Element.h"
 
-class AreaToAvoid: public Object
+class AreaToAvoid: public Element
 {
 public:
 	AreaToAvoid(double _x, double _y, double _radius);
