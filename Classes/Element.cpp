@@ -44,9 +44,9 @@ void Element::click()
 	CCLOG(("Clicked on element " + std::to_string(id) + " on position " + std::to_string(pos.x) + " " + std::to_string(pos.y)).c_str());
 }
 
-double Element::Distance(Element o)
+double Element::Distance(Element* o)
 {
-	return sqrt((o.pos.x - pos.x)*(o.pos.x - pos.x) + (o.pos.y - pos.y)*(o.pos.y - pos.y));
+	return sqrt((o->pos.x - pos.x)*(o->pos.x - pos.x) + (o->pos.y - pos.y)*(o->pos.y - pos.y));
 }
 
 double Element::DistanceSquared(Element o)

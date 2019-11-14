@@ -2,6 +2,7 @@
 #include "Element.h"
 #include "AreaToAvoid.h"
 
+
 class Guru;
 
 class Fish: public Element
@@ -14,6 +15,7 @@ public:
 	double getVelocityY();
 	virtual void Draw(float dt);
 	virtual void Update(std::vector<std::shared_ptr<Fish>> &fishes, std::list<AreaToAvoid> &obstacles, double width, double length,float dt);
+	void Influenced(Guru *guru);
 
 	static const double STEP;
 	static const double DISTANCE_MIN;
@@ -30,12 +32,12 @@ protected:
 	bool AvoidObstacle(std::list<AreaToAvoid> obstacles);
 	bool AvoidFish(std::vector<std::shared_ptr<Fish>> &fishes);
 	void CalculateAverageDirection(std::vector<std::shared_ptr<Fish>> fishes);
-	void Influenced(Guru &guru);
+	
 	bool isInInfluenceRadiusOfHisGuru();
 	//void Draw(float dt);
+
 	cocos2d::Point velocity;
 	float lineLength;
 	float lineThickness;
 	Guru* guru;
-	bool isAfollower;
 };

@@ -17,7 +17,7 @@ public:
 	void click();
 
 	// Utilities functions
-	double Distance(Element o);
+	double Distance(Element* o);
 	double DistanceSquared(Element o);
 
 	// Variables

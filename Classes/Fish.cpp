@@ -1,5 +1,6 @@
 #include "Fish.h"
 #include "math.h"
+#include "Guru.h"
 using namespace cocos2d;
 
 double const Fish::STEP = 20;
@@ -14,7 +15,7 @@ Fish::Fish(cocos2d::Node * parent, double _X, double _Y, double _dir): Element(p
 	pos = Point(_X, _Y);
 	lineLength = 10;
 	lineThickness = 0.5;
-	
+	guru = nullptr;
 }
 Fish::Fish(): Element()
 {
@@ -176,7 +177,6 @@ bool Fish::AvoidObstacle(std::list<AreaToAvoid> obstacles)
 }
 
 
-//CA COMPILE MAIS SUR QUE CA MARCHE WARNING FOYER A ENMERDE HERE
 bool Fish::AvoidFish(std::vector<std::shared_ptr<Fish>> &fishes)
 {
 	//recherche poisson le plus proche
@@ -234,19 +234,25 @@ void Fish::CalculateAverageDirection(std::vector<std::shared_ptr<Fish>> fishes)
 
 }
 
-void Fish::Influenced(Guru &guru)
+void Fish::Influenced(Guru *_guru)
 {
-	if (isAfollower)
-	{
-		//bool = Check si dans la zone d'influence de son gourou
-		//si bool == true return;
-		//Sinon guru = guru et color = guru.color
-	}
+	if (isInInfluenceRadiusOfHisGuru())
+		return;
+		
+	guru = _guru;
+	color = guru->color;
 }
 
 
 bool Fish::isInInfluenceRadiusOfHisGuru()
 {
-	//double distance = Distance(*guru);
-	return true;
+	if (guru == nullptr)
+		return false;
+
+	double distance = Distance((Element*)guru);
+	if (distance <= guru->influenceRadius)
+	{
+		return true;
+	}
+	else return false;
 }

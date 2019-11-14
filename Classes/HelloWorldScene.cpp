@@ -24,7 +24,6 @@ bool HelloWorld::init()
     
     auto visibleSize = Director::getInstance()->getVisibleSize();
 	auto arenaSize = Point(visibleSize.width, visibleSize.height - 50);
-
     auto origin = Director::getInstance()->getVisibleOrigin();
 
 

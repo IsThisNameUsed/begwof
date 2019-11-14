@@ -23,7 +23,10 @@ WorldManager::WorldManager(cocos2d::Node* parent,int _fishNumber, double _width,
 	//type = typeid(fishes.at(_fishNumber);
 
 	*/
-	fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, 400, 400, 0, cocos2d::ccColor4F::GREEN)));
+	
+	fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, 10, 10, 0, cocos2d::ccColor4F::RED)));
+	fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, 150, 150, 0, cocos2d::ccColor4F::BLUE)));
+	fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, 250, 250, 0, cocos2d::ccColor4F::GREEN)));
 }
 
 
@@ -36,6 +39,17 @@ void WorldManager::AddObstacle(double _posX, double _posY, double _radius)
 	obstacles.push_back(*(new AreaToAvoid(_posX, _posY, _radius)));
 }
 
+/*Fish WorldManager::ReturnGuru(cocos2d::ccColor4F color)
+{
+	if (color == cocos2d::ccColor4F::GREEN)
+	{
+
+	}
+	else if (color == cocos2d::ccColor4F::RED)
+	{
+
+	}
+}*/
 void WorldManager::UpdateObstacles()
 {
 	auto it = obstacles.begin();
