@@ -4,10 +4,10 @@
 using namespace cocos2d;
 
 double const Fish::STEP = 20;
-const double Fish::DISTANCE_MIN = 10;
-const double Fish::DISTANCE_MIN_SQUARED = 100;
-const double Fish::DISTANCE_MAX = 40;
-const double Fish::DISTANCE_MAX_SQUARED = 1600;
+const double Fish::DISTANCE_MIN = 8;
+const double Fish::DISTANCE_MIN_SQUARED = 64;
+const double Fish::DISTANCE_MAX = 100;
+const double Fish::DISTANCE_MAX_SQUARED = 10000;
 
 Fish::Fish(cocos2d::Node * parent, double _X, double _Y, double _dir): Element(parent)
 {

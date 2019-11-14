@@ -56,7 +56,7 @@ bool HelloWorld::init()
 	clickListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onClick, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(clickListener, this);
 
-	worldManager = new WorldManager(this,150, arenaSize.x, arenaSize.y);
+	worldManager = new WorldManager(this,300, arenaSize.x, arenaSize.y);
 
 	// Update function call
 	this->scheduleUpdate();
