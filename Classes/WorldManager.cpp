@@ -17,11 +17,11 @@ WorldManager::WorldManager(cocos2d::Node* parent,int _fishNumber, double _width,
 		fishes.push_back(std::shared_ptr<Fish>(new Fish(parent,x, y, dir)));
 	}
 
-	int i = 30;
+	int i = 80;
 	while (Player::CanCreateGuru())
 	{
-		fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, i, 400, 0, Player::GetNextGuruColor())));
-		i += 30;
+		fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, i, 200, 0, Player::GetNextGuruTeam())));
+		i += 70;
 	}
 
 	/*fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, 50, 400, 0, cocos2d::ccColor4F::RED)));

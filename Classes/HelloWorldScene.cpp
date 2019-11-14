@@ -55,7 +55,6 @@ bool HelloWorld::init()
 
 	worldManager = new WorldManager(this,150, arenaSize.x, arenaSize.y);
 
-
 	// Update function call
 	this->scheduleUpdate();
 	time = 0;

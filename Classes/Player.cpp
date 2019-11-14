@@ -2,69 +2,91 @@
 
 using namespace cocos2d;
 
-std::map<Color4F, bool> createMap()
+std::map<int, bool> Player::colorUsed{
+	{1, false},
+	{2, false},
+	{3, false},
+	{4, false},
+	{5, false},
+	{6, false},
+};
+
+const std::map<int, Color4F> Player::colorMatch{
+	{1, Color4F::RED},
+	{2, Color4F::BLUE},
+	{3, Color4F::GREEN},
+	{4, Color4F::MAGENTA},
+	{5, Color4F::ORANGE},
+	{6, Color4F::YELLOW},
+};
+
+int Player::currentIndex = (rand() % Player::colorUsed.size()) + 1;
+
+
+int Player::GetNextGuruTeam()
 {
-	std::map<Color4F, bool> m;
-	m[Color4F::RED] = false;
-	return m;
-}
-
-/*std::map<Color4F, bool> Player::colors {
-   {Color4F::RED, false},
-   {Color4F::BLUE, false},
-   {Color4F::GRAY, false},
-   {Color4F::GREEN, false},
-   {Color4F::MAGENTA, false},
-   {Color4F::ORANGE, false},
-   {Color4F::YELLOW, false},
-};*/
-
-std::map<Color4F, bool> Player::colors = createMap();
-
-cocos2d::Color4F Player::GetNextGuruColor()
-{
-	/*for (auto color : colors)
+	int triesLeft = colorUsed.size();
+	while (triesLeft > 0)
 	{
-		if (!color.second)
-			return color.first;
+		--triesLeft;
+		if (!colorUsed.at(currentIndex))
+			return currentIndex;
+
+		NextIndex();
 	}
-	*/
-	return Color4F::WHITE;
+	return 0;
 }
 
-bool Player::RegisterColor(cocos2d::Color4F color)
+bool Player::RegisterColor(int id)
 {
-	/*auto foundColor = colors.find(color);
+	auto foundColorUsed = colorUsed.find(id);
 
 	// If no color match
-	if (foundColor == colors.end())
+	if (foundColorUsed == colorUsed.end())
 		return false;
 
 	// Color already taken
-	if (foundColor->second)
+	if (foundColorUsed->second)
 		return false;
 
-	foundColor->second = true;*/
+	foundColorUsed->second = true;
 	return true;
 }
 
-bool Player::RemoveColor(cocos2d::Color4F color)
+bool Player::RemoveColor(int id)
 {
-	/*auto foundColor = colors.find(color);
+	auto foundColorUsed = colorUsed.find(id);
 
 	// If no color match
-	if (foundColor == colors.end())
+	if (foundColorUsed == colorUsed.end())
 		return false;
 
 	// Color already free
-	if (!foundColor->second)
+	if (!foundColorUsed->second)
 		return false;
 
-	foundColor->second = false;*/
-	return true;
+	foundColorUsed->second = false;
 }
 
 bool Player::CanCreateGuru()
 {
-	return GetNextGuruColor() != Color4F::WHITE;
+	return GetNextGuruTeam() != 0;
+}
+
+cocos2d::Color4F Player::GetColor(int id)
+{
+	auto find = colorMatch.find(id);
+	if (find == colorMatch.end())
+		return Color4F::WHITE;
+
+	return find->second;
+}
+
+int Player::NextIndex()
+{
+	++currentIndex;
+	if (currentIndex > colorUsed.size())
+		currentIndex = 1;
+
+	return currentIndex;
 }

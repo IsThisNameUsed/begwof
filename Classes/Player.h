@@ -6,21 +6,17 @@
 class Player
 {
 public:
-	static cocos2d::Color4F GetNextGuruColor();
-	static bool RegisterColor(cocos2d::Color4F color);
-	static bool RemoveColor(cocos2d::Color4F color);
+	static int GetNextGuruTeam();
+	static bool RegisterColor(int color);
+	static bool RemoveColor(int color);
 	static bool CanCreateGuru();
+	static cocos2d::Color4F GetColor(int id);
 
 private:
-	using Map = std::map <cocos2d::Color4F, bool>;
-	static const Map& getColors() {
-		static const Map ret{
-			{cocos2d::Color4F::RED, false}
-		};
-		return ret;
-	}
+	static int NextIndex();
 
-	//static std::map<cocos2d::Color4F, bool> colors;
-
+	static int currentIndex;
+	static std::map<int, bool> colorUsed;
+	const static std::map<int, cocos2d::Color4F> colorMatch;
 };
 
