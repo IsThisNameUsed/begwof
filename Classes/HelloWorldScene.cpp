@@ -23,12 +23,14 @@ bool HelloWorld::init()
     }
 
 	int width = 400;
+	int height = width * 1.77;
 	auto director = Director::getInstance();
-	director->getOpenGLView()->setFrameSize(width*2, width*2);
-	director->getOpenGLView()->setDesignResolutionSize(width, width, ResolutionPolicy::EXACT_FIT);
+	director->getOpenGLView()->setFrameSize(height *2, width*2);
+	director->getOpenGLView()->setDesignResolutionSize(height, width, ResolutionPolicy::EXACT_FIT);
 
+	int barHeight = 0;
     auto visibleSize = Director::getInstance()->getVisibleSize();
-	auto arenaSize = Point(visibleSize.width, visibleSize.height - 50);
+	auto arenaSize = Point(visibleSize.width, visibleSize.height - barHeight);
     auto origin = Director::getInstance()->getVisibleOrigin();
 
 
@@ -42,7 +44,7 @@ bool HelloWorld::init()
 
     Rect safeArea = Director::getInstance()->getSafeAreaRect();
 	//drawNode->drawRect(safeArea.origin, safeArea.origin + safeArea.size, Color4F::BLUE);
-	drawNode->drawSolidRect(Point(0, visibleSize.height - 50), visibleSize, Color4F::GRAY);
+	drawNode->drawSolidRect(Point(0, visibleSize.height - barHeight), visibleSize, Color4F::GRAY);
 	drawNode->drawRect(Point(0, 0), arenaSize, Color4F::BLUE);
 
 
