@@ -34,10 +34,13 @@ bool HelloWorld::init()
 	// Arena border
     auto drawNode = DrawNode::create();
     drawNode->setPosition(Vec2(0, 0));
-    addChild(drawNode);
+    addChild(drawNode, 1);
 
     Rect safeArea = Director::getInstance()->getSafeAreaRect();
-    drawNode->drawRect(safeArea.origin, safeArea.origin + safeArea.size, Color4F::BLUE);
+	//drawNode->drawRect(safeArea.origin, safeArea.origin + safeArea.size, Color4F::BLUE);
+	drawNode->drawSolidRect(Point(0, visibleSize.height - 50), visibleSize, Color4F::GRAY);
+	drawNode->drawRect(Point(0, 0), arenaSize, Color4F::BLUE);
+	
 
 	// Keyboard listener
 	auto keyboardListener = EventListenerKeyboard::create();
@@ -95,6 +98,18 @@ void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 		timeScale = 2.0;
 		CCLOG("time fast");
 	}
+	else if (keyCode == EventKeyboard::KeyCode::KEY_4)
+		timeScale = 3.0;
+	else if (keyCode == EventKeyboard::KeyCode::KEY_5)
+		timeScale = 4.0;
+	else if (keyCode == EventKeyboard::KeyCode::KEY_6)
+		timeScale = 5.0;
+	else if (keyCode == EventKeyboard::KeyCode::KEY_7)
+		timeScale = 7.5;
+	else if (keyCode == EventKeyboard::KeyCode::KEY_8)
+		timeScale = 10.0;
+	else if (keyCode == EventKeyboard::KeyCode::KEY_9)
+		timeScale = 20.0;
 }
 
 // Callback when player click with mouse

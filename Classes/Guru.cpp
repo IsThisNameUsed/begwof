@@ -1,4 +1,5 @@
 #include "Guru.h"
+#include "Player.h"
 
 using namespace cocos2d;
 
@@ -7,10 +8,13 @@ Guru::Guru(cocos2d::Node * parent, double _X, double _Y, double _dir, ccColor4F 
 	lineThickness = 1.5;
 	influenceRadius = 30;
 	this->color = color;
+
+	Player::RegisterColor(color);
 }
 
 Guru::~Guru()
 {
+	Player::RemoveColor(color);
 }
 
 void Guru::Update(std::vector<std::shared_ptr<Fish>>& fishes, std::list<AreaToAvoid>& obstacles, double width, double length, float dt)
