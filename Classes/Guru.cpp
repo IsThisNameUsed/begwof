@@ -42,7 +42,6 @@ void Guru::Influence(std::vector<std::shared_ptr<Fish>>& fishes)
 		if (DistanceSquared(*fish) < influenceRadius * influenceRadius)
 		{
 			fish->Influenced(this);
-			//fish->color = color;
 		}
 		++it;
 	}
