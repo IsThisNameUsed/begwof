@@ -22,9 +22,10 @@ bool HelloWorld::init()
         return false;
     }
 
+	int width = 400;
 	auto director = Director::getInstance();
-	director->getOpenGLView()->setFrameSize(1680, 950);
-	director->getOpenGLView()->setDesignResolutionSize(1680, 950, ResolutionPolicy::EXACT_FIT);
+	director->getOpenGLView()->setFrameSize(width*2, width*2);
+	director->getOpenGLView()->setDesignResolutionSize(width, width, ResolutionPolicy::EXACT_FIT);
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
 	auto arenaSize = Point(visibleSize.width, visibleSize.height - 50);
@@ -56,7 +57,7 @@ bool HelloWorld::init()
 	clickListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onClick, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(clickListener, this);
 
-	worldManager = new WorldManager(this,150, arenaSize.x, arenaSize.y);
+	worldManager = new WorldManager(this, 150, arenaSize.x, arenaSize.y);
 
 	// Update function call
 	this->scheduleUpdate();
