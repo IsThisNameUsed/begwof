@@ -5,6 +5,8 @@
 #include "stdlib.h"
 #include "Fish.h"
 #include "Guru.h"
+#include "Player.h"
+
 class WorldManager
 {
 public:

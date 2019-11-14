@@ -7,6 +7,7 @@
 #include "Fish.h"
 #include "Guru.h"
 #include "WorldManager.h";
+#include "Player.h";
 
 class HelloWorld : public cocos2d::Scene
 {

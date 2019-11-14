@@ -23,6 +23,8 @@ public:
 	static const double DISTANCE_MAX;
 	static const double DISTANCE_MAX_SQUARED;
 
+	int teamId = 0;
+
 protected:
 	void UpdatePosition(float dt);
 	bool InAlignment(Fish p);

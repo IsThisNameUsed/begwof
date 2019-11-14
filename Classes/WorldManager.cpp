@@ -17,16 +17,19 @@ WorldManager::WorldManager(cocos2d::Node* parent,int _fishNumber, double _width,
 		fishes.push_back(std::shared_ptr<Fish>(new Fish(parent,x, y, dir)));
 	}
 
-	/*std::shared_ptr<Guru> guru = std::shared_ptr<Guru>(new Guru(parent, 50, 50, 0, cocos2d::ccColor4F::RED));
-	std::string type = typeid(guru).name();
-	fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, 50, 50, 0, cocos2d::ccColor4F::RED)));
-	//type = typeid(fishes.at(_fishNumber);
+	int i = 80;
+	while (Player::CanCreateGuru())
+	{
+		fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, i, 200, 0, Player::GetNextGuruTeam())));
+		i += 70;
+	}
 
-	*/
-	
-	fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, 10, 10, 0, cocos2d::ccColor4F::RED)));
-	fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, 150, 150, 0, cocos2d::ccColor4F::BLUE)));
-	fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, 250, 250, 0, cocos2d::ccColor4F::GREEN)));
+	/*fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, 50, 400, 0, cocos2d::ccColor4F::RED)));
+	fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, 150, 400, 0, cocos2d::ccColor4F::GREEN)));
+	fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, 250, 400, 0, cocos2d::ccColor4F::BLUE)));
+	fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, 350, 400, 0, cocos2d::ccColor4F::MAGENTA)));
+	fishes.push_back(std::shared_ptr<Guru>(new Guru(parent, 450, 400, 0, cocos2d::ccColor4F::ORANGE)));*/
+
 }
 
 
