@@ -22,9 +22,10 @@ bool HelloWorld::init()
         return false;
     }
 
+	int width = 400;
 	auto director = Director::getInstance();
-	director->getOpenGLView()->setFrameSize(1680, 950);
-	director->getOpenGLView()->setDesignResolutionSize(1680, 950, ResolutionPolicy::EXACT_FIT);
+	director->getOpenGLView()->setFrameSize(width*2, width*2);
+	director->getOpenGLView()->setDesignResolutionSize(width, width, ResolutionPolicy::EXACT_FIT);
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
 	auto arenaSize = Point(visibleSize.width, visibleSize.height - 50);
@@ -43,7 +44,7 @@ bool HelloWorld::init()
 	//drawNode->drawRect(safeArea.origin, safeArea.origin + safeArea.size, Color4F::BLUE);
 	drawNode->drawSolidRect(Point(0, visibleSize.height - 50), visibleSize, Color4F::GRAY);
 	drawNode->drawRect(Point(0, 0), arenaSize, Color4F::BLUE);
-	
+
 
 	// Keyboard listener
 	auto keyboardListener = EventListenerKeyboard::create();
