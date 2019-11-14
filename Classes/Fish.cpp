@@ -218,6 +218,8 @@ void Fish::CalculateAverageDirection(std::vector<std::shared_ptr<Fish>> fishes)
 	for (int i = 0; i < fishes.size(); i++)
 	{
 		Fish f = *fishes.at(i).get();
+		if (teamId != f.teamId)
+			continue;
 		if (InAlignment(f))
 		{
 			totalVelocityX += f.velocity.x;
@@ -238,9 +240,11 @@ void Fish::Influenced(Guru *_guru)
 {
 	if (isInInfluenceRadiusOfHisGuru())
 		return;
-		
+	if(guru!=nullptr)guru->influenceRadius -= 1;
 	guru = _guru;
 	color = guru->color;
+	teamId = guru->teamId;
+	guru->influenceRadius += 1;
 }
 
 
