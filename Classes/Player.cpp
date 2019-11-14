@@ -84,9 +84,12 @@ cocos2d::Color4F Player::GetColor(int id)
 
 void Player::Reset()
 {
-	for (auto it : colorUsed)
+	auto it = colorUsed.begin();
+	auto end = colorUsed.end();
+	while (it != end)
 	{
-		it.second = false;
+		it->second = false;
+		++it;
 	}
 }
 
