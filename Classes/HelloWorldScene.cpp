@@ -17,11 +17,15 @@ bool HelloWorld::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !Scene::init() )
+    if (!Scene::init())
     {
         return false;
     }
-    
+
+	auto director = Director::getInstance();
+	director->getOpenGLView()->setFrameSize(1680, 950);
+	director->getOpenGLView()->setDesignResolutionSize(1680, 950, ResolutionPolicy::EXACT_FIT);
+
     auto visibleSize = Director::getInstance()->getVisibleSize();
 	auto arenaSize = Point(visibleSize.width, visibleSize.height - 50);
     auto origin = Director::getInstance()->getVisibleOrigin();
@@ -67,15 +71,6 @@ void HelloWorld::update(float dt)
 	dt *= timeScale;
 	time += dt;
 	worldManager->UpdateWorld(dt);
-	// Update each element
-	/*auto it = elements.begin();
-	auto end = elements.end();
-	while (it != end)
-	{
-		Element* element = it->get();		
-		element->Draw(dt);
-		++it;
-	}*/
 }
 
 // Callback when player press any key
