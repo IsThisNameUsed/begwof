@@ -16,6 +16,8 @@ public:
 	void UpdateObstacles();
 	void UpdateFishes(float dt);
 	void UpdateWorld(float dt);
+	Fish ReturnGuru(cocos2d::ccColor4F);
+
 protected:
 	std::vector<std::shared_ptr<Fish>> fishes;
 	std::list<AreaToAvoid> obstacles;
