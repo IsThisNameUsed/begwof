@@ -46,7 +46,7 @@ bool HelloWorld::init()
 	//drawNode->drawRect(safeArea.origin, safeArea.origin + safeArea.size, Color4F::BLUE);
 	drawNode->drawSolidRect(Point(0, visibleSize.height - barHeight), visibleSize, Color4F::GRAY);
 	drawNode->drawRect(Point(0, 0), arenaSize, Color4F::BLUE);
-	
+
 
 	// Keyboard listener
 	auto keyboardListener = EventListenerKeyboard::create();
@@ -59,7 +59,7 @@ bool HelloWorld::init()
 	clickListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onClick, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(clickListener, this);
 
-	worldManager = new WorldManager(this, 150, arenaSize.x, arenaSize.y);
+	worldManager = new WorldManager(this,300, arenaSize.x, arenaSize.y);
 
 	// Update function call
 	this->scheduleUpdate();
