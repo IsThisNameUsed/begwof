@@ -11,6 +11,7 @@ public:
 	static bool RemoveColor(int color);
 	static bool CanCreateGuru();
 	static cocos2d::Color4F GetColor(int id);
+	static void Reset();
 
 private:
 	static int NextIndex();

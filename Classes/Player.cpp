@@ -82,6 +82,14 @@ cocos2d::Color4F Player::GetColor(int id)
 	return find->second;
 }
 
+void Player::Reset()
+{
+	for (auto it : colorUsed)
+	{
+		it.second = false;
+	}
+}
+
 int Player::NextIndex()
 {
 	++currentIndex;

@@ -82,7 +82,12 @@ void HelloWorld::update(float dt)
 // Callback when player press any key
 void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
-	if (keyCode == EventKeyboard::KeyCode::KEY_1)
+	if (keyCode == EventKeyboard::KeyCode::KEY_R)
+	{
+		Player::Reset();
+		CCDirector::sharedDirector()->replaceScene(HelloWorld::scene());
+	}
+	else if (keyCode == EventKeyboard::KeyCode::KEY_1)
 	{
 		timeScale = 0.1;
 		CCLOG("time slow");
